@@ -12,6 +12,9 @@ class LinkedList<T> implements Iterable<T> {
     constructor() {
         this.list = undefined;
     }
+    [Symbol.iterator](): Iterator<T, any, undefined> {
+        throw new Error('Method not implemented.');
+    }
 
     //size
     public get length(): number {
