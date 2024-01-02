@@ -167,3 +167,5 @@ class LinkedList<T> implements Iterable<T> {
 
     
 }
+
+export default LinkedList;
