@@ -93,6 +93,72 @@ class LinkedList<T> implements Iterable<T> {
         }
         return null;
     }
+    //get
+    public get(i: number): T | null {
+        if (i < 0 || i >= this.length) {
+            throw new Error('Index out of bounds');
+        }
+        let cur = this.list!.head;
+        for (let j = 0; j < i; j++) {
+            cur = cur!.next;
+        }
+        return cur!.value;
+    }
+    //removeFront
+    public removeFront(): void {
+        if (this.list) {
+            this.list.head = this.list.head!.next;
+            this.list.length--;
+        }
+    }
+    //removeBack
+    public removeBack(): void {
+        if (this.list) {
+            let cur = this.list.head;
+            for (let i = 0; i < this.length - 2; i++) {
+                cur = cur!.next;
+            }
+            this.list.tail = cur;
+            this.list.length--;
+        }
+    }
+    //removeAt
+    public removeAt(i: number): void {
+        if (i < 0 || i >= this.length) {
+            throw new Error('Index out of bounds');
+        }
+        if (i === 0) {
+            this.removeFront();
+        } else if (i === this.length - 1) {
+            this.removeBack();
+        } else {
+            let cur = this.list!.head;
+            for (let j = 0; j < i - 1; j++) {
+                cur = cur!.next;
+            }
+            cur!.next = cur!.next!.next;
+            this.list!.length--;
+        }
+    }
+    //contains
+    public contains(val: T): boolean {
+        if (this.list) {
+            let cur = this.list.head;
+            while (cur) {
+                if (cur.value === val) {
+                    return true;
+                }
+                cur = cur.next;
+            }
+        }
+        return false;
+    }
+    //clear
+    public clear(): void {
+        this.list = undefined;
+    }
+
+    
 
 
 
